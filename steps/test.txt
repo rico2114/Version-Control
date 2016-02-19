@@ -1,0 +1,4 @@
+ADD	Juan	LINE	0
+REPLACE	Pedro	WITH	Negro	LINE	1
+REMOVE	Maria	LINE	2
+REPLACE	Hector	WITH	Sebastian	LINE	3
