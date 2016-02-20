@@ -25,7 +25,7 @@ public class ForwardController extends Controller<ArrayList<ActionStep>> {
 	/**
 	 * Applies some changes to the un-commited changes and commited ones
 	 */
-	public void generateSteps() {
+	public void interpretSteps() {
 		final FileMaster master = getMaster();
 		final List<String> firstFile = master.getLastCommitedFile();
 		final List<String> secondFile = master.getUncommitedFile();
@@ -36,13 +36,10 @@ public class ForwardController extends Controller<ArrayList<ActionStep>> {
 			}
 
 			if (!firstFile.get(lineId).isEmpty() && secondFile.get(lineId).isEmpty()) {
-				System.out.println("REMOVED LINE");
 				RemoveActionHandler.SINGLETON.apply(this, new RemoveAction(firstFile.get(lineId), lineId));
 			} else if (firstFile.get(lineId).isEmpty() && !secondFile.get(lineId).isEmpty()) {
-				System.out.println("ADDEED LINE");
 				AddActionHandler.SINGLETON.apply(this, new AddAction(secondFile.get(lineId), lineId));
 			} else {
-				System.out.println("REPLACED LINE");
 				ReplaceActionHandler.SINGLETON.apply(this, new ReplaceAction(lineId, firstFile.get(lineId), secondFile.get(lineId)));
 			}
 		}

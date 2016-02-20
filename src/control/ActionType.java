@@ -10,4 +10,12 @@ public enum ActionType {
 	REMOVE,
 	REPLACE;
 	
+	public static ActionType forName(final String name) {
+		for (ActionType type : ActionType.values()) {
+			if (type.name().equals(name))
+				return type;
+		}
+		return null;
+	}
+	
 }
